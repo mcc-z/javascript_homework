@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+    <header class="bg-dark text-white">
+        <div class="container-fluid px-4">
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <h1 class="h4 m-0">Form Validation</h1>
+
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Menu
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="homework_1.html">Homework 1</a></li>
+                        <li><a class="dropdown-item" href="homework_2.html">Homework 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <form name="form1" method="post" onsubmit="return check_number()">
+                <p>Enter a number</p>
+                <input type="number" name="num" placeholder="Enter a number">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="num1_output"></p>
+        </div>
+
+        <div>
+            <form name="form2" method="post" onsubmit="return check_positive_number()">
+                <p>Enter a positive number</p>
+                <input type="number" name="num" placeholder="Enter a positive number">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="num2_output"></p>
+        </div>
+
+        <div>
+            <form name="form3" method="post" onsubmit="return check_decimal()">
+                <p>Enter a decimal number</p> <!-- type="number" only takes whole num, use step="any" to allow decimals -->
+                <input type="number" name="num" step="any" placeholder="Enter a decimal number">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="num3_output"></p>
+        </div>
+
+        <div>
+            <form name="form4" method="post" onsubmit="return check_positive_decimal()">
+                <p>Enter a positive decimal</p>
+                <input type="number" name="num" step="any" placeholder="Enter a positive decimal">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="num4_output"></p>
+        </div>
+
+        <div>
+            <form name="form5" method="post" onsubmit="return check_email()">
+                <p>Enter an email</p>
+                <input type="email" name="email" placeholder="Enter an email">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="email_output"></p>
+        </div>
+
+        <div>
+            <form name="form6" method="post" onsubmit="return check_bool()">
+                <p>Enter a boolean</p>
+                <input type="text" name="bool" placeholder="Enter a boolean">
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="bool_output"></p>
+        </div>
+    </main>
+
+    <script>
+        function check_number() {
+            let num = document.forms['form1']['num'].value;
+
+            if (isNaN(num) || num === "") {
+                alert('Please enter a number.');
+                return false;
+            }
+
+            document.getElementById('num1_output').innerHTML = '<strong>Valid input: </strong>' + num;
+            return false;
+        }
+        function check_positive_number() {
+            let num = document.forms['form2']['num'].value;
+
+            if (isNaN(num) || num <= 0) {
+                alert('Please enter a positive number.');
+                return false;
+            }
+
+            document.getElementById('num2_output').innerHTML = '<strong>Valid input: </strong>' + num;
+            return false;
+        }
+        function check_decimal() {
+            let num = document.forms['form3']['num'].value;
+
+            if (isNaN(num) || Number.isInteger(num)) {
+                alert('Please enter a decimal number.');
+                return false;
+            }
+
+            document.getElementById('num3_output').innerHTML = '<strong>Valid input: </strong>' + num;
+            return false;
+        }
+        function check_positive_decimal() {
+            let num = document.forms['form4']['num'].value;
+
+            if (isNaN(num) || num <= 0 || Number.isInteger(num)) {
+                alert('Please enter a positive decimal.');
+                return false;
+            }
+
+            document.getElementById('num4_output').innerHTML = '<strong>Valid input: </strong>' + num;
+            return false;
+        }
+        function check_email() {
+            let email = document.forms['form5']['email'].value;
+
+            // this is a pattern to crosscheck with the given email
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            /* SYMBOL BREAKDOWN:
+                1. /^ ... $/  means the WHOLE string must match the pattern specified within these symbols
+                    - /.../ means any regular expression
+                    - ^ start of the string
+                    - $ end of the string
+                2. [^\s@]+   basically it means, ANY combination of characters that are NOT @ or whitespaces
+                    - [...] means a character group (anything within the brackets)
+                    - ^ inside the bracket, it means NOT
+                    - \s means any whitespace (like spaces, tab, enter, etc.)
+                    - @ literally just means @
+                    - + means 1 or more characters (any combination of characters, refer to laravel [0-9]+ very similar)
+                3. @ OUTSIDE of brackets means must have @
+                4. \. means must have . (the reason it's not just . is because . means any character)
+                >>> All in all, it'll look smth like this: example@email.com :)
+            */
+
+            // use .test() to crosscheck the pattern of email with emailPattern
+            if (!emailPattern.test(email)) {
+                alert('Please enter an email.');
+                return false;
+            }
+
+            document.getElementById('email_output').innerHTML = '<strong>Valid input: </strong>' + email;
+            return false;
+        }
+        function check_bool() {
+            let value = document.forms['form6']['bool'].value.toLowerCase();
+            
+            if (value !== 'true' && value !== 'false') {
+                alert('Please enter true or false.');
+                return false;
+            }
+
+            document.getElementById('bool_output').innerHTML = '<strong>Valid input: </strong>' + value;
+            return false;
+        }
+    </script>
+</body>
+</html>
