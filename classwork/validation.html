@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family-Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/classwork/css/validation.css">
+    <script defer src="/classwork/js/Validation2.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="form">
+            <h1>Create a teacher!</h1>
+            <div class="input-control">
+                <label for="TeacherCode">TeacherCode</label>
+                <input id="TeacherCode" name="TeacherCode" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="FullName">FullName</label>
+                <input id="FullName" name="FullName" type="text">
+                <div class="error"></div>
+            </div>
+            <div class="input-control">
+                <label for="Contact">Contact</label>
+                <input id="Contact" name="Contact" type="text">
+                <div class="error"></div>
+            </div>
+
+            <button type="button" id="BtCreate">Create</button>
+            <div id="Msg" class="text-center">Warning! Invalid input(s).</div>
+        </div>
+    </div>
+</body>
+</html>
