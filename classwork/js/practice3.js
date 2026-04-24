@@ -8,13 +8,6 @@ function showSpinner() {
 }
 
 $(document).ready(function() {
-    $('button#showSpinner').click(function() {
-        showSpinner();
-    });
-});
-
-$(document).ready(function() {
-    $('button#hideSpinner').click(function() {
-        hideSpinner();
-    });
+    $('#showSpinner').click(showSpinner);
+    $('#hideSpinner').click(hideSpinner);
 });
