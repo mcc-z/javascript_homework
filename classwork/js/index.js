@@ -40,7 +40,7 @@ window.onload = function() {
 
 function checkLogin(username, password) {
     let encodedCredentials = btoa(`${username}:${password}`);
-    const url = "http://10.12.1.50/api/login";
+    const url = "http://127.0.0.1/api/login";
     fetch(url,{
         method: 'GET',
         headers: {

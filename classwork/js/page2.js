@@ -4,7 +4,7 @@ loadCourseType();
 
 function loadCourseType() {
     let encodedCredentials = getCookie('session_token');
-    const url = "http://10.12.1.50/api/coursetype";
+    const url = "http://127.0.0.1/api/coursetype";
     fetch(url,{
         headers: {
             'Authorization': `Basic ${encodedCredentials}`
@@ -51,7 +51,7 @@ function createCourse() {
         let hour = document.getElementById('Hour').value;
 
         let encodedCredentials = getCookie('session_token');
-        const url = "http://10.12.1.50/api/course";
+        const url = "http://127.0.0.1/api/course";
         let Parameters = {
             CourseTypeId: courseTypeId,
             CourseName: courseName,

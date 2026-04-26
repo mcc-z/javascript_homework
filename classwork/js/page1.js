@@ -1,7 +1,7 @@
 loadTable();
 function loadTable(){
     let encodedCredentials = getCookie('session_token');
-    const url = "http://10.12.1.50/api/course";
+    const url = "http://127.0.0.1/api/course";
     fetch(url,{
         method: 'GET',
         headers: {
@@ -75,7 +75,7 @@ function OnOff_Fn(CourseId) {
 function OnOffYes_Fn() {
     let val = document.getElementById('OnOffYes').value;
     let encodedCredentials = getCookie('session_token');
-    const url = "http://10.12.1.50/api/course";
+    const url = "http://127.0.0.1/api/course";
     let Parameters = {
         Id: val
     };
@@ -110,7 +110,7 @@ function Delete_Fn(CourseId) {
 function DeleteYes_Fn() {
     let val = document.getElementById('DeleteYes').value;
     let encodedCredentials = getCookie('session_token');
-    const url = "http://10.12.1.50/api/course";
+    const url = "http://127.0.0.1/api/course";
     let Parameters = {
         Id: val
     };
